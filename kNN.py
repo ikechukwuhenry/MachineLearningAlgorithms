@@ -63,7 +63,8 @@ def getResponse(neighbors):
 
 
 def getAccuracy(testSet, predictions):
-    #   function that sums the total correct predictions and returns the accuracy as a percentage of correct classifications
+    #   function that sums the total correct predictions and returns the accuracy as a percentage of correct
+    # classifications
     #  the accuracy of the model is to calculate a ratio of the total correct predictions out of all predictions made,
     #  called the classification accuracy.
     correct = 0
