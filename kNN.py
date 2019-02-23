@@ -19,20 +19,20 @@ def loadDataset(filename, split, trainingSet=[], testSet=[]):
                     testSet.append(dataset[x])
 
 
-# given that all four flower measurements are numeric and have the same units,
-# We Get the Euclidean Distance directly
-# is the square root of the sum of the squared differences between the two arrays of numbers
 def euclideanDistance(instance1, instance2, length):
+    # given that all four flower measurements are numeric and have the same units,
+    # We Get the Euclidean Distance directly
+    # is the square root of the sum of the squared differences between the two arrays of numbers
     distance = 0
     for x in range(length):
         distance += pow((instance1[x] - instance2[x]), 2)
         return math.sqrt(distance)
 
 
-#  the getNeighbors function that returns k most similar neighbors from the training set for a given test instance
-#  (using the already defined euclideanDistance function)
-#  locate the most similar neighbors for a test instance
 def getNeighbors(trainingSet, testInstance, k):
+    #  the getNeighbors function that returns k most similar neighbors from the training set for a given test instance
+    #  (using the already defined euclideanDistance function)
+    #  locate the most similar neighbors for a test instance
     distances = []
     length = len(testInstance) - 1
     for x in range(len(trainingSet)):
@@ -45,12 +45,12 @@ def getNeighbors(trainingSet, testInstance, k):
     return neighbors
 
 
-#  a function for getting the majority voted response from a number of neighbors.
-#  It assumes the class is the last attribute for each neighbor.
-#  devise a predicted response based on those neighbors
-#  We can do this by allowing each neighbor to vote for
-#  their class attribute, and take the majority vote as the prediction
 def getResponse(neighbors):
+    #  a function for getting the majority voted response from a number of neighbors.
+    #  It assumes the class is the last attribute for each neighbor.
+    #  devise a predicted response based on those neighbors
+    #  We can do this by allowing each neighbor to vote for
+    #  their class attribute, and take the majority vote as the prediction
     classVotes = {}
     for x in range(len(neighbors)):
         response = neighbors[x][-1]
@@ -62,10 +62,10 @@ def getResponse(neighbors):
     return sortedVotes[0][0]
 
 
-#   function that sums the total correct predictions and returns the accuracy as a percentage of correct classifications
-#  the accuracy of the model is to calculate a ratio of the total correct predictions out of all predictions made,
-#  called the classification accuracy.
 def getAccuracy(testSet, predictions):
+    #   function that sums the total correct predictions and returns the accuracy as a percentage of correct classifications
+    #  the accuracy of the model is to calculate a ratio of the total correct predictions out of all predictions made,
+    #  called the classification accuracy.
     correct = 0
     for x in range(len(testSet)):
         if testSet[x][-1] == predictions[x]:
