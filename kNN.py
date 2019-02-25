@@ -20,7 +20,6 @@ def loadDataset(filename, split, trainingSet=[], testSet=[]):
 
 
 def euclideanDistance(instance1, instance2, length):
-    # given that all four flower measurements are numeric and have the same units,
     # We Get the Euclidean Distance directly
     # is the square root of the sum of the squared differences between the two arrays of numbers
     distance = 0
@@ -51,15 +50,15 @@ def getResponse(neighbors):
     #  devise a predicted response based on those neighbors
     #  We can do this by allowing each neighbor to vote for
     #  their class attribute, and take the majority vote as the prediction
-    classVotes = {}
+    class_votes = {}
     for x in range(len(neighbors)):
         response = neighbors[x][-1]
-        if response in classVotes:
-            classVotes[response] += 1
+        if response in class_votes:
+            class_votes[response] += 1
         else:
-            classVotes[response] = 1
-    sortedVotes = sorted(classVotes.iteritems(), key=operator.itemgetter(1), reverse=True)
-    return sortedVotes[0][0]
+            class_votes[response] = 1
+    sorted_votes = sorted(class_votes.iteritems(), key=operator.itemgetter(1), reverse=True)
+    return sorted_votes[0][0]
 
 
 def getAccuracy(testSet, predictions):
